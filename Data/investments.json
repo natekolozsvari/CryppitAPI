@@ -1,0 +1,32 @@
+[
+  {
+    "user_id": 1,
+    "crypto_id": "tokocrypto",
+    "amount": 13000,
+    "price": 27300
+  },
+  {
+    "user_id": 1,
+    "crypto_id": "bitcoin",
+    "amount": 1,
+    "price": 46579
+  },
+  {
+    "user_id": 1,
+    "crypto_id": "ethereum",
+    "amount": 2.9770233339,
+    "price": 10000
+  },
+  {
+    "user_id": 1,
+    "crypto_id": "cardano",
+    "amount": 1234,
+    "price": 2961.6
+  },
+  {
+    "user_id": 1,
+    "crypto_id": "tether",
+    "amount": 11000.9900990099,
+    "price": 11111
+  }
+]
