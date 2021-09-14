@@ -27,8 +27,11 @@ namespace CryppitBackend.Services
                             string data = await content.ReadAsStringAsync();
                             if (data != null)
                             {
-                                cryptos = JsonSerializer.Deserialize<Crypto[]>(data);
-
+                                //Parse your data into a object.
+                                cryptos = JsonSerializer.Deserialize<Crypto[]>(data, new JsonSerializerOptions
+                                {
+                                    PropertyNameCaseInsensitive = true
+                                });
                             }
                             else
                             {
