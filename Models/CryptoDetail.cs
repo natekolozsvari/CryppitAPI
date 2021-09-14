@@ -20,6 +20,9 @@ namespace CryppitBackend.Models
         public double AllTimeHigh { get; set; }
         public double TotalValue { get; set; }
 
+        public CryptoGraph Graph { get; set; }
+
+
         public string Image { get; set; }
 
         public double Change { get; set; }
