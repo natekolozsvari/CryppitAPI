@@ -14,7 +14,7 @@ namespace CryppitBackend.Services
     {
 
         private string jsonString;
-            public static async Task<IEnumerable<Crypto>> GetCryptos(int currentPage, int cryptoPerPage)
+            public async Task<IEnumerable<Crypto>> GetCryptos(int currentPage, int cryptoPerPage)
         {
             string baseURL = $"https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page={cryptoPerPage}&page={currentPage}&sparkline=false";
             Crypto[] cryptos = Array.Empty<Crypto>();
@@ -65,16 +65,16 @@ namespace CryppitBackend.Services
             public IWebHostEnvironment WebHostEnvironment { get; }
 
 
-            public IEnumerable<Crypto> GetCryptos()
-            {
-                using (var jsonFileReader = File.OpenText(JsonFileName))
-                {
-                    return JsonSerializer.Deserialize<Crypto[]>(jsonFileReader.ReadToEnd(),
-                        new JsonSerializerOptions
-                        {
-                            PropertyNameCaseInsensitive = true
-                        });
-                }
-            }
+            //public IEnumerable<Crypto> GetCryptos()
+            //{
+            //    using (var jsonFileReader = File.OpenText(JsonFileName))
+            //    {
+            //        return JsonSerializer.Deserialize<Crypto[]>(jsonFileReader.ReadToEnd(),
+            //            new JsonSerializerOptions
+            //            {
+            //                PropertyNameCaseInsensitive = true
+            //            });
+            //    }
+            //}
         }
 }
