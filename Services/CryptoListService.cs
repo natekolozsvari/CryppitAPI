@@ -37,7 +37,10 @@ namespace CryppitBackend.Services
                             if (data != null)
                             {
                                 //Parse your data into a object.
-                                cryptos = JsonSerializer.Deserialize<Crypto[]>(data);
+                                cryptos = JsonSerializer.Deserialize<Crypto[]>(data, new JsonSerializerOptions
+                                {
+                                    PropertyNameCaseInsensitive = true
+                                });
 
                             }
                             else
