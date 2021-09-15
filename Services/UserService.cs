@@ -20,5 +20,14 @@ namespace CryppitBackend.Services
         }
 
         private string JsonFileName => Path.Combine(WebHostEnvironment.ContentRootPath, "Data", "users.json");
+
+        public IEnumerable<User> GetUsers()
+        {
+            using var jsonFileReader = File.OpenText(JsonFileName);
+            return JsonSerializer.Deserialize<User[]>(jsonFileReader.ReadToEnd(), new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            });
+        }
     }
 }
