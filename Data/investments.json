@@ -1,0 +1,37 @@
+[
+  {
+    "Id": "a5fc59a651c448f48fbe1c8d99185574",
+    "user_id": "9df35e81bdde45cdbf4fa280bf21aae7",
+    "crypto_id": "tokocrypto",
+    "price": 25300,
+    "Amount": 12000
+  },
+  {
+    "Id": "264ced27873e4398b74bbcb450e3e62d",
+    "user_id": "9df35e81bdde45cdbf4fa280bf21aae7",
+    "crypto_id": "bitcoin",
+    "price": 46579,
+    "Amount": 1
+  },
+  {
+    "Id": "74d6cf0425f047d78a84fceef180c80f",
+    "user_id": "9df35e81bdde45cdbf4fa280bf21aae7",
+    "crypto_id": "ethereum",
+    "price": 10000,
+    "Amount": 2.9770233339
+  },
+  {
+    "Id": "7e51cc620b5c4d1ab0bb70aea43d6c7c",
+    "user_id": "9df35e81bdde45cdbf4fa280bf21aae7",
+    "crypto_id": "cardano",
+    "price": 2961.6,
+    "Amount": 1234
+  },
+  {
+    "Id": "e397795453b848ae8ee86a33d8b56e99",
+    "user_id": "9df35e81bdde45cdbf4fa280bf21aae7",
+    "crypto_id": "tether",
+    "price": 11111,
+    "Amount": 11000.9900990099
+  }
+]

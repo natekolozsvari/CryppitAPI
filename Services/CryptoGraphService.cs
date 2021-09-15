@@ -1,18 +1,19 @@
-﻿using System;
+﻿using CryppitBackend.Models;
+using Microsoft.AspNetCore.Hosting;
+using System;
+using System.Diagnostics;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
-using CryppitBackend.Models;
-using Microsoft.AspNetCore.Hosting;
 
 namespace CryppitBackend.Services
 {
-    public class CryptoDetailService
+    public class CryptoGraphService
     {
-        public async Task<CryptoDetail> GetDetails(string cryptoId)
+        public async Task<CryptoGraph> GetGraph(string id)
         {
-            string baseURL = $"https://api.coingecko.com/api/v3/coins/{cryptoId}";
-            CryptoDetail cryptoDetail = null;
+            string baseURL = $"https://api.coingecko.com/api/v3/coins/{id}/market_chart?vs_currency=usd&days=30&interval=daily";
+            CryptoGraph cryptoGraph = null;
             try
             {
                 using (HttpClient client = new HttpClient())
@@ -24,14 +25,14 @@ namespace CryppitBackend.Services
                             string data = await content.ReadAsStringAsync();
                             if (data != null)
                             {
-                                cryptoDetail = JsonSerializer.Deserialize<CryptoDetail>(data, new JsonSerializerOptions
+                                cryptoGraph = JsonSerializer.Deserialize<CryptoGraph>(data, new JsonSerializerOptions
                                 {
                                     PropertyNameCaseInsensitive = true
                                 });
                             }
                             else
                             {
-                                Console.WriteLine("Data is null!");
+                                Trace.WriteLine("Data is null!");
                             }
                         }
                     }
@@ -40,16 +41,16 @@ namespace CryppitBackend.Services
             catch (Exception exception)
             {
                 Console.WriteLine(exception);
-
             }
-            return cryptoDetail;
-        }
+            return cryptoGraph;
 
-        public CryptoDetailService(IWebHostEnvironment webHostEnvironment)
+        }
+        public CryptoGraphService(IWebHostEnvironment webHostEnvironment)
         {
             WebHostEnvironment = webHostEnvironment;
         }
 
         public IWebHostEnvironment WebHostEnvironment { get; }
+
     }
 }
