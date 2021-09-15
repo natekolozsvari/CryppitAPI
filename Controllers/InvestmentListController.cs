@@ -20,16 +20,24 @@ namespace CryppitBackend.Controllers
             InvestmentService = investmentService;
         }
 
-        [HttpGet("{id}")]
-        public IEnumerable<Investment> Get(Guid id)
+        [HttpGet("{userid}")]
+        public IEnumerable<Investment> Get(string userId)
         {
-            var investments = InvestmentService.GetInvestments(id);
+            var investments = InvestmentService.GetInvestments(userId);
             // add graph
             // add crypto details
             return investments;
         }
 
+        [HttpPost("{userid}")]
+        public void PostInvestment(string userId, Investment investment)
+        {
+            investment.UserId = userId;
+            investment.Id = Guid.NewGuid().ToString("N");
+            InvestmentService.AddInvestment(userId, investment);
+        }
 
+        
         public IActionResult Index()
         {
             return View();

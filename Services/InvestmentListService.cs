@@ -20,10 +20,10 @@ namespace CryppitBackend.Services
 
         private string JsonFileName
         {
-            get { return Path.Combine(WebHostEnvironment.WebRootPath, "./Data", "investments.json"); }
+            get { return Path.Combine(Environment.CurrentDirectory, "Data", "investments.json"); }
         }
 
-        public IEnumerable<Investment> GetInvestments(Guid id)
+        public IEnumerable<Investment> GetInvestments(string id)
         {
             using (var jsonFileReader = File.OpenText(JsonFileName))
             {
@@ -34,6 +34,21 @@ namespace CryppitBackend.Services
                     });
                 return allInvestments.Where(i => i.UserId == id);
             }
+        }
+
+        public void AddInvestment(string id, Investment investment)
+        {
+            var allInvestments = new List<Investment>();
+            using (var jsonFileReader = File.OpenText(JsonFileName))
+            {
+                allInvestments = JsonSerializer.Deserialize<List<Investment>>(jsonFileReader.ReadToEnd(),
+                    new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    });
+            }
+            allInvestments.Add(investment);
+            File.WriteAllText(JsonFileName, JsonSerializer.Serialize(allInvestments, new JsonSerializerOptions { WriteIndented = true }));
         }
     }
 }

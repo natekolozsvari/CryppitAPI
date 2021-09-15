@@ -8,10 +8,13 @@ namespace CryppitBackend.Models
 {
     public class Investment
     {
+        public string Id { get; set; }
+
+        [JsonIgnore]
         public CryptoDetail Crypto { get; set; }
 
         [JsonPropertyName("user_id")]
-        public Guid UserId { get; set; }
+        public string UserId { get; set; }
 
         [JsonPropertyName("crypto_id")]
         public string CryptoId { get; set; }
@@ -19,6 +22,8 @@ namespace CryppitBackend.Models
         [JsonPropertyName("price")]
         public double PriceBought { get; set; }
         public double Amount { get; set; }
+        
+        [JsonIgnore]
         public CryptoGraph Graph { get; set; }
     }
 }
