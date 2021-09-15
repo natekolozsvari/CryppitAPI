@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+
 
 namespace CryppitBackend.Models
 {
     public class CryptoGraph
-    {
-        public List<double> Prices { get; set; }
-        public List<int> Dates { get; set; }
+    { 
+        public List<object> Prices { get; set; }
+        
     }
 }
