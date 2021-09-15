@@ -1,20 +1,18 @@
-﻿using CryppitBackend.Models;
-using Microsoft.AspNetCore.Hosting;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
+using CryppitBackend.Models;
+using Microsoft.AspNetCore.Hosting;
 
 namespace CryppitBackend.Services
 {
-    public class CryptoListService
+    public class CryptoDetailService
     {
-
-            public async Task<IEnumerable<Crypto>> GetCryptos(int currentPage, int cryptoPerPage)
+        public async Task<CryptoDetail> GetDetails(string cryptoId)
         {
-            string baseURL = $"https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page={cryptoPerPage}&page={currentPage}&sparkline=false";
-            Crypto[] cryptos = Array.Empty<Crypto>();
+            string baseURL = $"https://api.coingecko.com/api/v3/coins/{cryptoId}";
+            CryptoDetail cryptoDetail = null;
             try
             {
                 using (HttpClient client = new HttpClient())
@@ -26,11 +24,10 @@ namespace CryppitBackend.Services
                             string data = await content.ReadAsStringAsync();
                             if (data != null)
                             {
-                                cryptos = JsonSerializer.Deserialize<Crypto[]>(data, new JsonSerializerOptions
+                                cryptoDetail = JsonSerializer.Deserialize<CryptoDetail>(data, new JsonSerializerOptions
                                 {
                                     PropertyNameCaseInsensitive = true
                                 });
-
                             }
                             else
                             {
@@ -43,15 +40,16 @@ namespace CryppitBackend.Services
             catch (Exception exception)
             {
                 Console.WriteLine(exception);
-            }
-            return cryptos;
 
-        }
-            public CryptoListService(IWebHostEnvironment webHostEnvironment)
-            {
-                WebHostEnvironment = webHostEnvironment;
             }
-
-            public IWebHostEnvironment WebHostEnvironment { get; }
+            return cryptoDetail;
         }
+
+        public CryptoDetailService(IWebHostEnvironment webHostEnvironment)
+        {
+            WebHostEnvironment = webHostEnvironment;
+        }
+
+        public IWebHostEnvironment WebHostEnvironment { get; }
+    }
 }

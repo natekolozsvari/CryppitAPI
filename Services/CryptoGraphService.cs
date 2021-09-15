@@ -1,20 +1,19 @@
 ﻿using CryppitBackend.Models;
 using Microsoft.AspNetCore.Hosting;
 using System;
-using System.Collections.Generic;
+using System.Diagnostics;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace CryppitBackend.Services
 {
-    public class CryptoListService
+    public class CryptoGraphService
     {
-
-            public async Task<IEnumerable<Crypto>> GetCryptos(int currentPage, int cryptoPerPage)
+        public async Task<CryptoGraph> GetGraph(string id)
         {
-            string baseURL = $"https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page={cryptoPerPage}&page={currentPage}&sparkline=false";
-            Crypto[] cryptos = Array.Empty<Crypto>();
+            string baseURL = $"https://api.coingecko.com/api/v3/coins/{id}/market_chart?vs_currency=usd&days=30&interval=daily";
+            CryptoGraph cryptoGraph = null;
             try
             {
                 using (HttpClient client = new HttpClient())
@@ -26,15 +25,14 @@ namespace CryppitBackend.Services
                             string data = await content.ReadAsStringAsync();
                             if (data != null)
                             {
-                                cryptos = JsonSerializer.Deserialize<Crypto[]>(data, new JsonSerializerOptions
+                                cryptoGraph = JsonSerializer.Deserialize<CryptoGraph>(data, new JsonSerializerOptions
                                 {
                                     PropertyNameCaseInsensitive = true
                                 });
-
                             }
                             else
                             {
-                                Console.WriteLine("Data is null!");
+                                Trace.WriteLine("Data is null!");
                             }
                         }
                     }
@@ -44,14 +42,15 @@ namespace CryppitBackend.Services
             {
                 Console.WriteLine(exception);
             }
-            return cryptos;
+            return cryptoGraph;
 
         }
-            public CryptoListService(IWebHostEnvironment webHostEnvironment)
-            {
-                WebHostEnvironment = webHostEnvironment;
-            }
-
-            public IWebHostEnvironment WebHostEnvironment { get; }
+        public CryptoGraphService(IWebHostEnvironment webHostEnvironment)
+        {
+            WebHostEnvironment = webHostEnvironment;
         }
+
+        public IWebHostEnvironment WebHostEnvironment { get; }
+
+    }
 }
