@@ -21,10 +21,10 @@ namespace CryppitBackend
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddControllers();
             services.AddHttpClient();
             services.AddTransient<CryptoListService>();
+            services.AddTransient<InvestmentListService>();
             services.AddTransient<CryptoGraphService>();
             services.AddTransient<CryptoDetailService>();
         }

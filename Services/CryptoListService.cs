@@ -10,6 +10,7 @@ namespace CryppitBackend.Services
 {
     public class CryptoListService
     {
+
             public async Task<IEnumerable<Crypto>> GetCryptos(int currentPage, int cryptoPerPage)
         {
             string baseURL = $"https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page={cryptoPerPage}&page={currentPage}&sparkline=false";
@@ -25,11 +26,11 @@ namespace CryppitBackend.Services
                             string data = await content.ReadAsStringAsync();
                             if (data != null)
                             {
-                                //Parse your data into a object.
                                 cryptos = JsonSerializer.Deserialize<Crypto[]>(data, new JsonSerializerOptions
                                 {
                                     PropertyNameCaseInsensitive = true
                                 });
+
                             }
                             else
                             {
@@ -52,6 +53,5 @@ namespace CryppitBackend.Services
             }
 
             public IWebHostEnvironment WebHostEnvironment { get; }
-
         }
 }
