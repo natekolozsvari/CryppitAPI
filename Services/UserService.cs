@@ -43,5 +43,21 @@ namespace CryppitBackend.Services
             userList.Add(user);
             File.WriteAllText(JsonFileName, JsonSerializer.Serialize(userList, new JsonSerializerOptions { WriteIndented = true }));
         }
+
+        public void ChangeBalance(string id, User user)
+        {
+            User[] userList;
+            using (var jsonFileReader = File.OpenText(JsonFileName))
+            {
+                userList = JsonSerializer.Deserialize<User[]>(jsonFileReader.ReadToEnd(), new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                });
+            }
+
+            var selectedUser = userList?.First(i => i.Id == id);
+            userList[Array.IndexOf(userList, selectedUser)] = user;
+            File.WriteAllText(JsonFileName, JsonSerializer.Serialize(userList, new JsonSerializerOptions { WriteIndented = true }));
+        }
     }
 }
