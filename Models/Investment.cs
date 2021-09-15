@@ -1,5 +1,4 @@
-﻿
-namespace CryppitBackend.Models
+﻿namespace CryppitBackend.Models
 {
     public class Investment
     {

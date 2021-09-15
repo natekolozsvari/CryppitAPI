@@ -29,7 +29,6 @@ namespace CryppitBackend.Services
                                 {
                                     PropertyNameCaseInsensitive = true
                                 });
-                                Trace.WriteLine(cryptoGraph.Prices);
                             }
                             else
                             {

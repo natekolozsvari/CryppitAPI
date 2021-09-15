@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -31,8 +28,6 @@ namespace CryppitBackend.Services
                                 {
                                     PropertyNameCaseInsensitive = true
                                 });
-
-                                Trace.WriteLine("jhhz");
                             }
                             else
                             {
