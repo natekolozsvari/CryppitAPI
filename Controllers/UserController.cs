@@ -21,10 +21,21 @@ namespace CryppitBackend.Controllers
             this.UserService = userService;
         }
 
+
         [HttpGet]
         public IEnumerable<User> Get()
         {
             return UserService.GetUsers();
+        }
+
+
+        [HttpPost]
+        public void AddUser(User user)
+        {
+            user.Id = Guid.NewGuid().ToString("N");
+            user.Balance = 100000;
+            user.JoinDate = DateTime.Now.Date.ToString("D");
+            UserService.AddUser(user);
         }
     }
 }
