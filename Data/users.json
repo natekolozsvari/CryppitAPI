@@ -1,0 +1,14 @@
+[
+  {
+    "Name": "John",
+    "Password": "12345",
+    "Id": "0f8fad5b-d9cb-469f-a165-70867728950e",
+    "Balance": 10000
+  },
+  {
+    "Name": "Jim",
+    "Password": "72346",
+    "Id": "0f8fad5b-d9cb-469f-a165-70867728950a",
+    "Balance": 20000
+  }
+]

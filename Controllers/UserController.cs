@@ -20,5 +20,11 @@ namespace CryppitBackend.Controllers
         {
             this.UserService = userService;
         }
+
+        [HttpGet]
+        public IEnumerable<User> Get()
+        {
+            return UserService.GetUsers();
+        }
     }
 }
