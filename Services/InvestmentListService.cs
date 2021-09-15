@@ -50,5 +50,23 @@ namespace CryppitBackend.Services
             allInvestments.Add(investment);
             File.WriteAllText(JsonFileName, JsonSerializer.Serialize(allInvestments, new JsonSerializerOptions { WriteIndented = true }));
         }
+
+        public void UpdateInvestment(string id, Investment investment)
+        {
+            Investment selectedInvestment;
+            Investment[] allInvestments;
+            using (var jsonFileReader = File.OpenText(JsonFileName))
+            {
+                allInvestments = JsonSerializer.Deserialize<Investment[]>(jsonFileReader.ReadToEnd(),
+                    new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    });
+                selectedInvestment = allInvestments.Where(i => i.Id == id).First();
+            }
+            allInvestments[Array.IndexOf(allInvestments, selectedInvestment)] = investment;
+            File.WriteAllText(JsonFileName, JsonSerializer.Serialize(allInvestments, new JsonSerializerOptions { WriteIndented = true }));
+
+        }
     }
 }

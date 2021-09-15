@@ -21,7 +21,7 @@ namespace CryppitBackend.Controllers
         }
 
         [HttpGet("{userid}")]
-        public IEnumerable<Investment> Get(string userId)
+        public IEnumerable<Investment> GetInvestment(string userId)
         {
             var investments = InvestmentService.GetInvestments(userId);
             // add graph
@@ -35,6 +35,12 @@ namespace CryppitBackend.Controllers
             investment.UserId = userId;
             investment.Id = Guid.NewGuid().ToString("N");
             InvestmentService.AddInvestment(userId, investment);
+        }
+
+        [HttpPut("{id}")]
+        public void UpdateInvestment(string id, Investment investment)
+        {
+            InvestmentService.UpdateInvestment(id, investment);
         }
 
         
