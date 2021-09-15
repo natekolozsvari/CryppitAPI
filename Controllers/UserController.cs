@@ -37,5 +37,12 @@ namespace CryppitBackend.Controllers
             user.JoinDate = DateTime.Now.Date.ToString("D");
             UserService.AddUser(user);
         }
+
+
+        [HttpPut("{id}")]
+        public void ChangeBalance(string id, User user)
+        {
+            UserService.ChangeBalance(id, user);
+        }
     }
 }
