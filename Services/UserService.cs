@@ -29,5 +29,19 @@ namespace CryppitBackend.Services
                 PropertyNameCaseInsensitive = true
             });
         }
+
+        public void AddUser(User user)
+        {
+            var userList = new List<User>();
+            using (var jsonFileReader = File.OpenText(JsonFileName))
+            {
+                userList = JsonSerializer.Deserialize<List<User>>(jsonFileReader.ReadToEnd(), new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                });
+            }
+            userList.Add(user);
+            File.WriteAllText(JsonFileName, JsonSerializer.Serialize(userList, new JsonSerializerOptions { WriteIndented = true }));
+        }
     }
 }
