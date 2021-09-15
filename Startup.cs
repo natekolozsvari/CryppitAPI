@@ -31,6 +31,7 @@ namespace CryppitBackend
             services.AddControllers();
             services.AddHttpClient();
             services.AddTransient<CryptoListService>();
+            services.AddTransient<CryptoDetailService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
