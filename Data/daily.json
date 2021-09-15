@@ -1,0 +1,16 @@
+{
+  "Details": {
+    "Id": "unifty",
+    "Symbol": "nif",
+    "Name": "Unifty",
+    "current_price": 22.16,
+    "Image": "https://assets.coingecko.com/coins/images/13726/large/logo_transparent.png?1628254980",
+    "price_change_percentage_24h": 1.02181,
+    "market_cap": 29135834,
+    "high_24h": 22.86,
+    "low_24h": 21.83,
+    "Ath": 54.12,
+    "total_volume": 40527
+  },
+  "Changed": 18885
+}
