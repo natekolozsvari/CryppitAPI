@@ -43,6 +43,13 @@ namespace CryppitBackend.Controllers
             InvestmentService.UpdateInvestment(id, investment);
         }
 
+        [HttpDelete("{id}")]
+        public void DeleteInvestment(string id)
+        {
+            InvestmentService.DeleteInvestment(id);
+        }
+
+
         
         public IActionResult Index()
         {

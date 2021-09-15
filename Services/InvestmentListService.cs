@@ -66,7 +66,21 @@ namespace CryppitBackend.Services
             }
             allInvestments[Array.IndexOf(allInvestments, selectedInvestment)] = investment;
             File.WriteAllText(JsonFileName, JsonSerializer.Serialize(allInvestments, new JsonSerializerOptions { WriteIndented = true }));
+        }
 
+        public void DeleteInvestment(string id)
+        {
+            Investment[] allInvestments;
+            using (var jsonFileReader = File.OpenText(JsonFileName))
+            {
+                allInvestments = JsonSerializer.Deserialize<Investment[]>(jsonFileReader.ReadToEnd(),
+                    new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    });
+                allInvestments = allInvestments.Where(i => i.Id != id).ToArray();
+            }
+            File.WriteAllText(JsonFileName, JsonSerializer.Serialize(allInvestments, new JsonSerializerOptions { WriteIndented = true }));
         }
     }
 }

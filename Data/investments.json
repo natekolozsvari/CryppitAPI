@@ -33,12 +33,5 @@
     "crypto_id": "tether",
     "price": 11111,
     "Amount": 11000.9900990099
-  },
-  {
-    "Id": "64b47b37000442e4a3f86d541d89bfc9",
-    "user_id": "466fb185b2ca45ea88f36aba8c9a0696",
-    "crypto_id": "asd",
-    "price": 1321,
-    "Amount": 2
   }
 ]
