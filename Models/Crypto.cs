@@ -31,6 +31,5 @@ namespace CryppitBackend.Models
 
         [JsonPropertyName("total_volume")]
         public double TotalVolume { get; set; }
-
     }
 }
