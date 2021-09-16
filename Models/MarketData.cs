@@ -29,12 +29,12 @@ namespace CryppitBackend.Models
 
     public class CurrentPrice
     {
-        public int Usd { get; set; }
+        public double Usd { get; set; }
     }
 
     public class Ath
     {
-        public int Usd { get; set; }
+        public double Usd { get; set; }
     }
 
     public class MarketCap
@@ -49,11 +49,11 @@ namespace CryppitBackend.Models
 
     public class High24H
     {
-        public int Usd { get; set; }
+        public double Usd { get; set; }
     }
 
     public class Low24H
     {
-        public int Usd { get; set; }
+        public double Usd { get; set; }
     }
 }

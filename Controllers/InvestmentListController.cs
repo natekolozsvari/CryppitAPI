@@ -3,6 +3,7 @@ using CryppitBackend.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -21,11 +22,19 @@ namespace CryppitBackend.Controllers
         }
 
         [HttpGet("{userid}")]
-        public IEnumerable<Investment> GetInvestment(string userId)
+        public async Task<IEnumerable<Investment>> GetInvestments(string userId)
         {
             var investments = InvestmentService.GetInvestments(userId);
-            // add graph
-            // add crypto details
+            var ids = new List<string>();
+            foreach (var investment in investments)
+            {
+                ids.Add(investment.CryptoId);
+            }
+            var prices = await InvestmentService.GetPrices(ids);
+            foreach (var investment in investments)
+            {
+                investment.CurrentPrice = prices[investment.CryptoId]["usd"];
+            }
             return investments;
         }
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -40,7 +41,6 @@ namespace CryppitBackend.Services
             catch (Exception exception)
             {
                 Console.WriteLine(exception);
-
             }
             return cryptoDetail;
         }
