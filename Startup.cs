@@ -28,6 +28,12 @@ namespace CryppitBackend
             services.AddTransient<CryptoGraphService>();
             services.AddTransient<CryptoDetailService>();
             services.AddTransient<UserService>();
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder.AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,6 +49,8 @@ namespace CryppitBackend
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseCors("CorsPolicy");
 
             app.UseEndpoints(endpoints =>
             {
