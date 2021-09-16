@@ -11,9 +11,9 @@ namespace CryppitBackend.Controllers
     {
         public FavoriteService FavoriteService { get; set; }
 
-        public FavoriteController(FavoriteService investmentService)
+        public FavoriteController(FavoriteService favoriteService)
         {
-            FavoriteService = investmentService;
+            FavoriteService = favoriteService;
         }
 
         [HttpGet]

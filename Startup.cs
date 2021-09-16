@@ -29,6 +29,7 @@ namespace CryppitBackend
             services.AddTransient<CryptoDetailService>();
             services.AddTransient<DailyCryptoService>();
             services.AddTransient<UserService>();
+            services.AddTransient<FavoriteService>();
 
             services.AddCors(options =>
             {
