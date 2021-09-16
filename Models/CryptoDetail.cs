@@ -1,9 +1,11 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace CryppitBackend.Models
 {
     public class CryptoDetail
     {
+
         public string Id { get; set; }
         public string Symbol { get; set; }
         public string Name { get; set; }
@@ -11,9 +13,10 @@ namespace CryppitBackend.Models
         [JsonPropertyName("market_data")]
         public MarketData MarketData { get; set; }
 
-        public CryptoGraph Graph { get; set; }
-
         public Image Image { get; set; }
+
+        public override string ToString() => JsonSerializer.Serialize<CryptoDetail>(this);
+
     }
 
     public class Image

@@ -13,7 +13,7 @@ namespace CryppitBackend.Models
         public double Value { get; set; }
 
         public string Image { get; set; }
-        
+
         [JsonPropertyName("price_change_percentage_24h")]
         public double Change { get; set; }
 
