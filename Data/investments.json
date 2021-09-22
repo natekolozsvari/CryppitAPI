@@ -4,6 +4,7 @@
     "user_id": "9df35e81bdde45cdbf4fa280bf21aae7",
     "crypto_id": "tokocrypto",
     "price": 345365,
+    "current_price": 0,
     "Amount": 12000
   },
   {
@@ -11,6 +12,7 @@
     "user_id": "9df35e81bdde45cdbf4fa280bf21aae7",
     "crypto_id": "bitcoin",
     "price": 46579,
+    "current_price": 0,
     "Amount": 1
   },
   {
@@ -18,6 +20,7 @@
     "user_id": "9df35e81bdde45cdbf4fa280bf21aae7",
     "crypto_id": "ethereum",
     "price": 10000,
+    "current_price": 0,
     "Amount": 2.9770233339
   },
   {
@@ -25,6 +28,7 @@
     "user_id": "9df35e81bdde45cdbf4fa280bf21aae7",
     "crypto_id": "cardano",
     "price": 2961.6,
+    "current_price": 0,
     "Amount": 1234
   },
   {
@@ -32,6 +36,87 @@
     "user_id": "9df35e81bdde45cdbf4fa280bf21aae7",
     "crypto_id": "tether",
     "price": 11111,
+    "current_price": 0,
     "Amount": 11000.9900990099
+  },
+  {
+    "Id": "9963e0897c034e47977d327f9dc12f0f",
+    "user_id": "c784662e0c27497eb4337cb0b2109823",
+    "crypto_id": "cardano",
+    "price": 29.780000000000005,
+    "current_price": 2.47,
+    "Amount": 12
+  },
+  {
+    "Id": "19846639772848339df11f7177e7abfc",
+    "user_id": "c784662e0c27497eb4337cb0b2109823",
+    "crypto_id": "bitcoin",
+    "price": 15883.890000000001,
+    "current_price": 48048,
+    "Amount": 0.3308405538
+  },
+  {
+    "Id": "29db33cb175748269ab6267b469387cd",
+    "user_id": "c784662e0c27497eb4337cb0b2109823",
+    "crypto_id": "ton-crystal",
+    "price": 1663.4730139999997,
+    "current_price": 0.37772,
+    "Amount": 4394.5265869608
+  },
+  {
+    "Id": "7e09cc87e1544da49a2171cd822ea223",
+    "user_id": "8a36046650c44eb9b543c09b63fdaa84",
+    "crypto_id": "bitcoin",
+    "price": 48387.56,
+    "current_price": 47679,
+    "Amount": 1.02
+  },
+  {
+    "Id": "7623c06d3bc644ea8ad10d36b39d73b8",
+    "user_id": "8a36046650c44eb9b543c09b63fdaa84",
+    "crypto_id": "tether",
+    "price": 1234,
+    "current_price": 0,
+    "Amount": 1234
+  },
+  {
+    "Id": "5bc772fbba094c7f8a2d10fa72c890cf",
+    "user_id": "8a36046650c44eb9b543c09b63fdaa84",
+    "crypto_id": "solana",
+    "price": 1000,
+    "current_price": 0,
+    "Amount": 6.6970265202
+  },
+  {
+    "Id": "0d1b51be471f4fb89e331b6696c38992",
+    "user_id": "8a36046650c44eb9b543c09b63fdaa84",
+    "crypto_id": "dogecoin",
+    "price": 20000,
+    "current_price": 0,
+    "Amount": 84420.9566582808
+  },
+  {
+    "Id": "d7b5d65c691c4d299fa7acecc5085718",
+    "user_id": "8a36046650c44eb9b543c09b63fdaa84",
+    "crypto_id": "litecoin",
+    "price": 18357,
+    "current_price": 0,
+    "Amount": 100
+  },
+  {
+    "Id": "276b4de29d524b9cb3b6e5691aa391f7",
+    "user_id": "8a36046650c44eb9b543c09b63fdaa84",
+    "crypto_id": "cardano",
+    "price": 2400,
+    "current_price": 0,
+    "Amount": 1000
+  },
+  {
+    "Id": "99ee0b8c95054dedb659422f51fe387c",
+    "user_id": "8a36046650c44eb9b543c09b63fdaa84",
+    "crypto_id": "ethereum",
+    "price": 3538.05,
+    "current_price": 0,
+    "Amount": 1
   }
 ]

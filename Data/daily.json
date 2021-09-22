@@ -1,16 +1,16 @@
 {
   "Details": {
-    "Id": "ton-crystal",
-    "Symbol": "ton",
-    "Name": "TON Crystal",
-    "current_price": 0.378475,
-    "Image": "https://assets.coingecko.com/coins/images/12783/large/96667603_115652523474502_6550262491509686272_n.png?1602885498",
-    "price_change_percentage_24h": -0.26409,
-    "market_cap": 242929334,
-    "high_24h": 0.379965,
-    "low_24h": 0.372542,
-    "Ath": 2.56,
-    "total_volume": 4148029
+    "Id": "visor",
+    "Symbol": "visr",
+    "Name": "Visor",
+    "current_price": 1.02,
+    "Image": "https://assets.coingecko.com/coins/images/14381/large/visor_logo.png?1615782828",
+    "price_change_percentage_24h": -7.84342,
+    "market_cap": 25479032,
+    "high_24h": 1.1,
+    "low_24h": 0.994057,
+    "Ath": 4.11,
+    "total_volume": 252054
   },
-  "Changed": 18886
+  "Changed": 18887
 }

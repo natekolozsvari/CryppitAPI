@@ -21,24 +21,18 @@ namespace CryppitBackend.Controllers
             InvestmentService = investmentService;
         }
 
-        [HttpGet("{userid}")]
+        [HttpGet("{userId}")]
         public async Task<IEnumerable<Investment>> GetInvestments(string userId)
         {
             var investments = InvestmentService.GetInvestments(userId);
-            var ids = new List<string>();
-            foreach (var investment in investments)
-            {
-                ids.Add(investment.CryptoId);
-            }
-            var prices = await InvestmentService.GetPrices(ids);
-            foreach (var investment in investments)
-            {
-                investment.CurrentPrice = prices[investment.CryptoId]["usd"];
-            }
+            var cryptoIds = investments.Select(investment => investment.CryptoId).ToList();
+            var prices = await InvestmentService.GetPrices(cryptoIds);
+            investments.ToList()
+                .ForEach(investment => investment.CurrentPrice = prices[investment.CryptoId]["usd"]);
             return investments;
         }
 
-        [HttpPost("{userid}")]
+        [HttpPost("{userId}")]
         public void PostInvestment(string userId, Investment investment)
         {
             investment.UserId = userId;

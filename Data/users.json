@@ -1,9 +1,18 @@
 [
   {
+    "Email": "john@doe.com",
     "Name": "John Doe",
     "Password": "johndoe",
     "Id": "c784662e0c27497eb4337cb0b2109823",
-    "Balance": 10000,
+    "Balance": 1964.21,
     "JoinDate": "Wednesday, September 15, 2021"
+  },
+  {
+    "Email": "nate@cryppit.com",
+    "Name": "nate",
+    "Password": "asdf",
+    "Id": "8a36046650c44eb9b543c09b63fdaa84",
+    "Balance": 5083.39,
+    "JoinDate": "16 September 2021"
   }
 ]

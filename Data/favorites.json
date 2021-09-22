@@ -1,1 +1,41 @@
-[]
+[
+  {
+    "Id": "bitcoin",
+    "Symbol": "btc",
+    "Name": "Bitcoin",
+    "current_price": 48077,
+    "Image": "https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579",
+    "price_change_percentage_24h": 0.95519,
+    "market_cap": 904573634914,
+    "high_24h": 48576,
+    "low_24h": 47336,
+    "Ath": 64805,
+    "total_volume": 31264572667
+  },
+  {
+    "Id": "ripple",
+    "Symbol": "xrp",
+    "Name": "XRP",
+    "current_price": 1.11,
+    "Image": "https://assets.coingecko.com/coins/images/44/large/xrp-symbol-white-128.png?1605778731",
+    "price_change_percentage_24h": 2.1991,
+    "market_cap": 51909213975,
+    "high_24h": 1.13,
+    "low_24h": 1.09,
+    "Ath": 3.4,
+    "total_volume": 3495795034
+  },
+  {
+    "Id": "ton-crystal",
+    "Symbol": "ton",
+    "Name": "TON Crystal",
+    "current_price": 0.378475,
+    "Image": "https://assets.coingecko.com/coins/images/12783/large/96667603_115652523474502_6550262491509686272_n.png?1602885498",
+    "price_change_percentage_24h": -0.26409,
+    "market_cap": 242929334,
+    "high_24h": 0.379965,
+    "low_24h": 0.372542,
+    "Ath": 2.56,
+    "total_volume": 4148029
+  }
+]
