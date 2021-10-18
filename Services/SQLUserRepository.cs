@@ -17,7 +17,7 @@ namespace CryppitBackend.Services
 
         public User GetUser(int id)
         {
-            throw new NotImplementedException();
+            return _context.Users.Find(id);
         }
 
         public IEnumerable<User> GetAllUsers()
