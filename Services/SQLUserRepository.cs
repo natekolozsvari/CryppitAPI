@@ -27,7 +27,9 @@ namespace CryppitBackend.Services
 
         public User Add(User user)
         {
-            throw new NotImplementedException();
+            _context.Users.Add(user);
+            _context.SaveChanges();
+            return user;
         }
 
         public User Update(User user)
