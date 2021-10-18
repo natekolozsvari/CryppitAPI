@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -6,25 +7,27 @@ using System.Text.Json.Serialization;
 {
     public class Investment
     {
+        [Required]
         public string Id { get; set; }
 
-        [JsonIgnore]
+        [Required]
         public CryptoDetail Crypto { get; set; }
 
-        [JsonPropertyName("user_id")]
+        [Required]
         public string UserId { get; set; }
 
-        [JsonPropertyName("crypto_id")]
+        [Required]
         public string CryptoId { get; set; }
 
-        [JsonPropertyName("price")]
+        [Required]
         public double PriceBought { get; set; }
 
-        [JsonPropertyName("current_price")]
+        [Required]
         public double CurrentPrice { get; set; }
+
+        [Required]
         public double Amount { get; set; }
         
-        [JsonIgnore]
         public CryptoGraph Graph { get; set; }
 
         public override string ToString() => JsonSerializer.Serialize<Investment>(this);
