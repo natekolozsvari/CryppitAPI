@@ -15,7 +15,7 @@ namespace CryppitBackend.Services
             this._context = context;
         }
 
-        public User GetUSer(int id)
+        public User GetUser(int id)
         {
             throw new NotImplementedException();
         }

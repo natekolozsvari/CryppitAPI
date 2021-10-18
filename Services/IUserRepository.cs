@@ -8,7 +8,7 @@ namespace CryppitBackend.Services
 {
     public interface IUserRepository
     {
-        User GetUSer(int id);
+        User GetUser(int id);
         IEnumerable<User> GetAllUsers();
         User Add(User user);
         User Update(User user);
