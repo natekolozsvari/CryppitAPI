@@ -17,17 +17,26 @@ namespace CryppitBackend.Services
 
         public IEnumerable<Favorite> GetAllFavorites()
         {
-            throw new NotImplementedException();
+            return _context.Favorites;
         }
 
         public Favorite Add(Favorite favorite)
         {
-            throw new NotImplementedException();
+            _context.Favorites.Add(favorite);
+            _context.SaveChanges();
+            return favorite;
         }
 
         public Favorite Delete(int id)
         {
-            throw new NotImplementedException();
+            Favorite favorite = _context.Favorites.Find(id);
+            if (favorite != null)
+            {
+                _context.Favorites.Remove(favorite);
+                _context.SaveChanges();
+            }
+
+            return favorite;
         }
     }
 }
