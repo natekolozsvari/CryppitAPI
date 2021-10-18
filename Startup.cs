@@ -30,8 +30,9 @@ namespace CryppitBackend
             services.AddTransient<CryptoGraphService>();
             services.AddTransient<CryptoDetailService>();
             services.AddTransient<DailyCryptoService>();
-            services.AddTransient<UserService>();
+            //services.AddTransient<UserService>();
             services.AddTransient<FavoriteService>();
+            services.AddScoped<IUserRepository, SQLUserRepository>();
             services.AddDbContextPool<AppDbContext>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("DBConnection")));
 
