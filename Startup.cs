@@ -1,6 +1,8 @@
+using CryppitBackend.Models;
 using CryppitBackend.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -30,6 +32,8 @@ namespace CryppitBackend
             services.AddTransient<DailyCryptoService>();
             services.AddTransient<UserService>();
             services.AddTransient<FavoriteService>();
+            services.AddDbContextPool<AppDbContext>(
+                options => options.UseSqlServer(Configuration.GetConnectionString("DBConnection")));
 
             services.AddCors(options =>
             {
