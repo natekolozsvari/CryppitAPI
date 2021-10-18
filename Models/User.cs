@@ -5,6 +5,7 @@ namespace CryppitBackend.Models
 {
     public class User
     {
+        [Key]
         public string Id { get; set; }
         
         [Required]
