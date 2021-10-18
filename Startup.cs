@@ -36,6 +36,8 @@ namespace CryppitBackend
             //services.AddTransient<UserService>();
             services.AddTransient<FavoriteService>();
             services.AddScoped<IUserRepository, SQLUserRepository>();
+            services.AddScoped<IInvestmentRepository, SQLInvestmentRepository>();
+            services.AddScoped<IDailyRepository, SQLDailyRepository>();
             services.AddDbContextPool<AppDbContext>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("DBConnection")));
 
