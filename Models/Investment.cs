@@ -8,10 +8,10 @@ using System.Text.Json.Serialization;
 {
     public class Investment
     {
-        [Required]
+        [Key]
         public string Id { get; set; }
 
-        [Required]
+        [NotMapped]
         public CryptoDetail Crypto { get; set; }
 
         [Required]
