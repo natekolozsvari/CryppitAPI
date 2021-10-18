@@ -15,9 +15,9 @@ namespace CryppitBackend.Services
             _context = context;
         }
 
-        public IEnumerable<Favorite> GetAllFavorites()
+        public IEnumerable<Favorite> GetAllFavorites(int userId)
         {
-            return _context.Favorites;
+            return _context.Favorites.Where(favorite =>favorite.UserId == userId);
         }
 
         public Favorite Add(Favorite favorite)
