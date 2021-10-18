@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CryppitBackend.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace CryppitBackend.Services
 {
@@ -32,9 +33,12 @@ namespace CryppitBackend.Services
             return user;
         }
 
-        public User Update(User user)
+        public User Update(User userChanges)
         {
-            throw new NotImplementedException();
+            var user = _context.Users.Attach(userChanges);
+            user.State = EntityState.Modified;
+            _context.SaveChanges();
+            return userChanges;
         }
 
         public User Delete(int id)
