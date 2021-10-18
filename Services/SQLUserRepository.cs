@@ -22,7 +22,7 @@ namespace CryppitBackend.Services
 
         public IEnumerable<User> GetAllUsers()
         {
-            throw new NotImplementedException();
+            return _context.Users;
         }
 
         public User Add(User user)
