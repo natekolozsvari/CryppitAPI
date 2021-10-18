@@ -8,11 +8,11 @@ namespace CryppitBackend.Services
 {
     interface IInvestmentRepository
     {
-        Investment GetInvestment(int id);
+        Investment GetInvestment(string id);
         IEnumerable<Investment> GetAllInvestments();
-        IEnumerable<Investment> GetInvestmentsForUser(int userId);
+        IEnumerable<Investment> GetInvestmentsForUser(string userId);
         Investment Add(Investment investment);
         Investment Update(Investment investmentChanges);
-        Investment Delete(int id);
+        Investment Delete(string id);
     }
 }
