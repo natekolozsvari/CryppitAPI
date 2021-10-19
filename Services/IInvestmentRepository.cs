@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CryppitBackend.Services
 {
-    interface IInvestmentRepository
+    public interface IInvestmentRepository
     {
         Investment GetInvestment(string id);
         IEnumerable<Investment> GetAllInvestments();

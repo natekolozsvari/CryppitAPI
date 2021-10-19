@@ -15,16 +15,18 @@ namespace CryppitBackend.Controllers
     public class InvestmentListController : Controller
     {
         public InvestmentListService InvestmentService { get; set; }
+        public IInvestmentRepository InvestmentRepository { get; set; }
 
-        public InvestmentListController(InvestmentListService investmentService)
+        public InvestmentListController(InvestmentListService investmentService, IInvestmentRepository repository)
         {
             InvestmentService = investmentService;
+            InvestmentRepository = repository;
         }
 
         [HttpGet("{userId}")]
         public async Task<IEnumerable<Investment>> GetInvestments(string userId)
         {
-            var investments = InvestmentService.GetInvestments(userId);
+            var investments = InvestmentRepository.GetInvestmentsForUser(userId);
             var cryptoIds = investments.Select(investment => investment.CryptoId).ToList();
             var prices = await InvestmentService.GetPrices(cryptoIds);
             investments.ToList()
@@ -37,19 +39,19 @@ namespace CryppitBackend.Controllers
         {
             investment.UserId = userId;
             investment.Id = Guid.NewGuid().ToString("N");
-            InvestmentService.AddInvestment(userId, investment);
+            InvestmentRepository.Add(investment);
         }
 
         [HttpPut("{id}")]
         public void UpdateInvestment(string id, Investment investment)
         {
-            InvestmentService.UpdateInvestment(id, investment);
+            InvestmentRepository.Update(investment);
         }
 
         [HttpDelete("{id}")]
         public void DeleteInvestment(string id)
         {
-            InvestmentService.DeleteInvestment(id);
+            InvestmentRepository.Delete(id);
         }
 
 
