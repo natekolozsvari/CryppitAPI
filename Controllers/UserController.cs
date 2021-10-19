@@ -24,10 +24,10 @@ namespace CryppitBackend.Controllers
         }
 
 
-        [HttpGet]
-        public IEnumerable<User> Get()
+        [HttpGet("{email}")]
+        public User GetUserByEmail(string email)
         {
-            return SqlUserRepository.GetAllUsers();
+            return SqlUserRepository.GetUserByEmail(email);
         }
 
 
