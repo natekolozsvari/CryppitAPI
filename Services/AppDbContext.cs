@@ -1,10 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CryppitBackend.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CryppitBackend.Models
+namespace CryppitBackend.Services
 {
     public class AppDbContext : DbContext
     {
@@ -20,6 +21,11 @@ namespace CryppitBackend.Models
         public DbSet<User> Users { get; set; }
  
         public DbSet<DailyCrypto> Daily { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Seed();
+        }
 
     }
 }
