@@ -21,6 +21,11 @@ namespace CryppitBackend.Services
             return _context.Users.Find(id);
         }
 
+        public User GetUserByEmail(string email)
+        {
+            return _context.Users.FirstOrDefault(user => user.Email == email);
+        }
+
         public IEnumerable<User> GetAllUsers()
         {
             return _context.Users;
