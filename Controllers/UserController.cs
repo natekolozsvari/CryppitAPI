@@ -14,9 +14,9 @@ namespace CryppitBackend.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        public SQLUserRepository SqlUserRepository { get; set; }
+        public IUserRepository SqlUserRepository { get; set; }
 
-        public UserController(SQLUserRepository userRepository)
+        public UserController(IUserRepository userRepository)
         {
             this.SqlUserRepository = userRepository;
         }
@@ -25,7 +25,7 @@ namespace CryppitBackend.Controllers
         [HttpGet]
         public IEnumerable<User> Get()
         {
-            return UserService.GetUsers();
+            return SqlUserRepository.GetAllUsers();
         }
 
 
@@ -35,14 +35,15 @@ namespace CryppitBackend.Controllers
             user.Id = Guid.NewGuid().ToString("N");
             user.Balance = 100000;
             user.JoinDate = DateTime.Now.Date.ToString("D");
-            UserService.AddUser(user);
+            SqlUserRepository.Add(user);
         }
 
 
         [HttpPut("{id}")]
         public void ChangeBalance(string id, User user)
         {
-            UserService.ChangeBalance(id, user);
+            var selectedUser = SqlUserRepository.GetUser(id);
+            SqlUserRepository.Update(selectedUser);
         }
     }
 }
