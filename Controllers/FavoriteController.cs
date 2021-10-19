@@ -22,9 +22,10 @@ namespace CryppitBackend.Controllers
             return FavoriteRepository.GetAllFavorites(id);
         }
 
-        [HttpPost]
-        public void PostFavorite(Favorite favorite)
+        [HttpPost("{id}")]
+        public void PostFavorite(Favorite favorite, int id)
         {
+            favorite.UserId = id;
             FavoriteRepository.Add(favorite);
         }
 
@@ -34,9 +35,9 @@ namespace CryppitBackend.Controllers
             FavoriteRepository.Delete(id);
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
+        //public IActionResult Index()
+        //{
+        //    return View();
+        //}
     }
 }
