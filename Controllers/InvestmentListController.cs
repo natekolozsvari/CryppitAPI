@@ -14,12 +14,12 @@ namespace CryppitBackend.Controllers
     [Route("api/[controller]")]
     public class InvestmentListController : Controller
     {
-        public InvestmentListService InvestmentService { get; set; }
+        //public InvestmentListService InvestmentService { get; set; }
         public IInvestmentRepository InvestmentRepository { get; set; }
 
-        public InvestmentListController(InvestmentListService investmentService, IInvestmentRepository repository)
+        public InvestmentListController(IInvestmentRepository repository)
         {
-            InvestmentService = investmentService;
+            //InvestmentService = investmentService;
             InvestmentRepository = repository;
         }
 
@@ -28,7 +28,7 @@ namespace CryppitBackend.Controllers
         {
             var investments = InvestmentRepository.GetInvestmentsForUser(userId);
             var cryptoIds = investments.Select(investment => investment.CryptoId).ToList();
-            var prices = await InvestmentService.GetPrices(cryptoIds);
+            var prices = await InvestmentRepository.GetPrices(cryptoIds);
             investments.ToList()
                 .ForEach(investment => investment.CurrentPrice = prices[investment.CryptoId]["usd"]);
             return investments;

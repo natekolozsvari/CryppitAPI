@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace CryppitBackend.Services
@@ -14,6 +16,8 @@ namespace CryppitBackend.Services
         {
             this.context = context;
         }
+
+        public IQueryable<Investment> Investments => context.Investments;
 
         public Investment Add(Investment investment)
         {
@@ -54,6 +58,41 @@ namespace CryppitBackend.Services
             investment.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             context.SaveChanges();
             return investmentChanges;
+        }
+
+        public async Task<Dictionary<string, Dictionary<string, double>>> GetPrices(List<string> ids)
+        {
+            var url = $"https://api.coingecko.com/api/v3/simple/price?ids={String.Join("%2C", ids)}&vs_currencies=usd";
+            var prices = new Dictionary<string, Dictionary<string, double>>();
+            try
+            {
+                using (HttpClient client = new HttpClient())
+                {
+                    using (HttpResponseMessage res = await client.GetAsync(url))
+                    {
+                        using (HttpContent content = res.Content)
+                        {
+                            string data = await content.ReadAsStringAsync();
+                            if (data != null)
+                            {
+                                prices = JsonSerializer.Deserialize<Dictionary<string, Dictionary<string, double>>>(data, new JsonSerializerOptions
+                                {
+                                    PropertyNameCaseInsensitive = true
+                                });
+                            }
+                            else
+                            {
+                                Console.WriteLine("Data is null!");
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+            }
+            return prices;
         }
     }
 }

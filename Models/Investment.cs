@@ -23,7 +23,7 @@ using System.Text.Json.Serialization;
         [Required]
         public double PriceBought { get; set; }
 
-        [Required]
+        [NotMapped]
         public double CurrentPrice { get; set; }
 
         [Required]
