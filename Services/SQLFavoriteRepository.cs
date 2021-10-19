@@ -27,7 +27,7 @@ namespace CryppitBackend.Services
             return favorite;
         }
 
-        public Favorite Delete(int id)
+        public Favorite Delete(string id)
         {
             Favorite favorite = _context.Favorites.Find(id);
             if (favorite != null)
