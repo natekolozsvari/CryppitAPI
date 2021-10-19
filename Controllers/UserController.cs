@@ -14,11 +14,11 @@ namespace CryppitBackend.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        public UserService UserService { get; }
+        public SQLUserRepository SqlUserRepository { get; set; }
 
-        public UserController(UserService userService)
+        public UserController(SQLUserRepository userRepository)
         {
-            this.UserService = userService;
+            this.SqlUserRepository = userRepository;
         }
 
 
