@@ -11,7 +11,7 @@ namespace CryppitBackend.Models
     public class DailyCrypto
     {
         [Required]
-        public Crypto Details { get; set; }
+        public string Details { get; set; }
 
         [Required]
         public long Changed { get; set; }

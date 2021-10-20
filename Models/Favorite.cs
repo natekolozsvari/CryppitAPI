@@ -8,10 +8,9 @@ using System.Threading.Tasks;
 
 namespace CryppitBackend.Models
 {
-    [Keyless]
     public class Favorite : Crypto
     {
         [Required]
-        public int UserId { get; set; }
+        public string UserId { get; set; }
     }
 }
