@@ -8,7 +8,7 @@ namespace CryppitBackend.Services
 {
     public interface IFavoriteRepository
     {
-        IEnumerable<Favorite> GetAllFavorites(int userId);
+        IEnumerable<Favorite> GetAllFavorites(string userId);
         Favorite Add(Favorite favorite);
         Favorite Delete(string id);
     }

@@ -17,13 +17,13 @@ namespace CryppitBackend.Controllers
         }
 
         [HttpGet("{id}")]
-        public IEnumerable<Crypto> GetFavorites(int id)
+        public IEnumerable<Crypto> GetFavorites(string id)
         {
             return FavoriteRepository.GetAllFavorites(id);
         }
 
         [HttpPost("{id}")]
-        public void PostFavorite(Favorite favorite, int id)
+        public void PostFavorite(Favorite favorite, string id)
         {
             favorite.UserId = id;
             FavoriteRepository.Add(favorite);
@@ -34,10 +34,5 @@ namespace CryppitBackend.Controllers
         {
             FavoriteRepository.Delete(id);
         }
-
-        //public IActionResult Index()
-        //{
-        //    return View();
-        //}
     }
 }

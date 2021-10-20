@@ -5,6 +5,8 @@ namespace CryppitBackend.Models
 {
     public class Crypto
     {
+        [Key]
+        public string FavoriteId { get; set; }
         public string Id { get; set; }
 
         public string Symbol { get; set; }
