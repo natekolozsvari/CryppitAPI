@@ -19,11 +19,11 @@ namespace CryppitBackend.Controllers
             CryptoService = cryptoService;
         }
 
-        [HttpGet]
-        public async Task<Crypto> Get()
-        {
-            return await CryptoService.GetDailyCrypto();
-        }
+        //[HttpGet]
+        //public async Task<Crypto> Get()
+        //{
+        //    return await CryptoService.GetDailyCrypto();
+        //}
 
         public IActionResult Index()
         {
