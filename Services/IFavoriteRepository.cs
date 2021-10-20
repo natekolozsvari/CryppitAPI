@@ -8,8 +8,8 @@ namespace CryppitBackend.Services
 {
    public interface IFavoriteRepository
     {
-        IEnumerable<Favorite> GetAllFavorites(string userId);
-        Favorite Add(Favorite favorite);
-        Favorite Delete(string id);
+        IEnumerable<Crypto> GetAllFavorites(string userId);
+        Crypto Add(Crypto favorite);
+        Crypto Delete(string id);
     }
 }

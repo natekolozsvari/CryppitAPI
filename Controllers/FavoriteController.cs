@@ -1,6 +1,7 @@
 ﻿using CryppitBackend.Models;
 using CryppitBackend.Services;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 
 namespace CryppitBackend.Controllers
@@ -23,9 +24,10 @@ namespace CryppitBackend.Controllers
         }
 
         [HttpPost("{id}")]
-        public void PostFavorite(Favorite favorite, string id)
+        public void PostFavorite(string id, Crypto favorite)
         {
             favorite.UserId = id;
+            favorite.FavoriteId = Guid.NewGuid().ToString("N");
             FavoriteRepository.Add(favorite);
         }
 
