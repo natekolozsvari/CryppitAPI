@@ -25,6 +25,17 @@
 //            get { return Path.Combine(Environment.CurrentDirectory, "Data", "daily.json"); }
 //        }
 
+        //public async Task<Crypto> GetDailyCrypto()
+        //{
+        //    DailyCrypto dailyCrypto;
+        //    using (var jsonFileReader = File.OpenText(JsonFileName))
+        //    {
+        //        dailyCrypto = JsonSerializer.Deserialize<DailyCrypto>(jsonFileReader.ReadToEnd(),
+        //            new JsonSerializerOptions
+        //            {
+        //                PropertyNameCaseInsensitive = true
+        //            });
+        //    }
 
 //        public async Task<Crypto> GetDailyCrypto()
 //        {

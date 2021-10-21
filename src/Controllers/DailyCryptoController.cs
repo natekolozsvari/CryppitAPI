@@ -24,10 +24,5 @@ namespace CryppitBackend.Controllers
         {
             return await DailyRepository.GetDaily();
         }
-
-        public IActionResult Index()
-        {
-            return View();
-        }
     }
 }

@@ -16,7 +16,7 @@ namespace CryppitBackend.Services
 
         public DbSet<Investment> Investments { get; set; }
 
-        public DbSet<Favorite> Favorites { get; set; }
+        public DbSet<Crypto> Favorites { get; set; }
 
         public DbSet<User> Users { get; set; }
  

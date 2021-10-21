@@ -14,12 +14,10 @@ namespace CryppitBackend.Controllers
     [Route("api/[controller]")]
     public class InvestmentListController : Controller
     {
-        //public InvestmentListService InvestmentService { get; set; }
         public IInvestmentRepository InvestmentRepository { get; set; }
 
         public InvestmentListController(IInvestmentRepository repository)
         {
-            //InvestmentService = investmentService;
             InvestmentRepository = repository;
         }
 
@@ -63,13 +61,6 @@ namespace CryppitBackend.Controllers
         public Investment DeleteInvestment(string id)
         {
             return InvestmentRepository.Delete(id);
-        }
-
-
-        
-        public IActionResult Index()
-        {
-            return View();
         }
     }
 }
