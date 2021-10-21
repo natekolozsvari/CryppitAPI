@@ -10,6 +10,6 @@ namespace CryppitBackend.Services
     {
         IEnumerable<Crypto> GetAllFavorites(string userId);
         Crypto Add(Crypto favorite);
-        Crypto Delete(string id);
+        Crypto Delete(string cryptoId, string userId);
     }
 }

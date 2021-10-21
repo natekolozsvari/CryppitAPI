@@ -28,9 +28,9 @@ namespace CryppitBackend.Services
             return favorite;
         }
 
-        public Crypto Delete(string id)
+        public Crypto Delete(string cryptoId, string userId)
         {
-            Crypto favorite = _context.Favorites.Find(id);
+            Crypto favorite = _context.Favorites.FirstOrDefault(crypto => crypto.UserId == userId && crypto.Id == cryptoId);
             if (favorite != null)
             {
                 _context.Favorites.Remove(favorite);

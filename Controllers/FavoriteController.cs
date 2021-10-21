@@ -31,10 +31,10 @@ namespace CryppitBackend.Controllers
             FavoriteRepository.Add(favorite);
         }
 
-        [HttpDelete("{id}")]
-        public void DeleteFavorite(string id)
+        [HttpDelete("{cryptoId}/{userId}")]
+        public void DeleteFavorite(string cryptoId, string userId)
         {
-            FavoriteRepository.Delete(id);
+            FavoriteRepository.Delete(cryptoId, userId);
         }
     }
 }

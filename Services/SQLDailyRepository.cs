@@ -31,5 +31,7 @@ namespace CryppitBackend.Services
         {
             return context.Daily.FirstOrDefault();
         }
+
+
     }
 }
