@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace CryppitBackend.Models
 {
-    [Keyless]
     public class DailyCrypto
     {
+        [Key]
         [Required]
-        public Crypto Details { get; set; }
+        public string Id { get; set; }
 
         [Required]
         public long Changed { get; set; }

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace CryppitBackend.Services
 {
-    interface IDailyRepository
+    public interface IDailyRepository
     {
-        DailyCrypto GetDaily();
+        Task<DailyCrypto> GetDaily();
         DailyCrypto ChangeDaily(DailyCrypto newDaily);
     }
 }
