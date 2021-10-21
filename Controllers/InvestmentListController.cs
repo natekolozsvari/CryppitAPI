@@ -35,16 +35,17 @@ namespace CryppitBackend.Controllers
         }
 
         [HttpPost("{userId}")]
-        public void PostInvestment(string userId, Investment investment)
+        public Investment PostInvestment(string userId, Investment investment)
         {
             investment.UserId = userId;
             investment.Id = Guid.NewGuid().ToString("N");
-            InvestmentRepository.Add(investment);
+            return InvestmentRepository.Add(investment);
         }
 
         [HttpPut("{id}")]
         public void UpdateInvestment(string id, Investment investment)
         {
+            investment.Id = id;
             InvestmentRepository.Update(investment);
         }
 

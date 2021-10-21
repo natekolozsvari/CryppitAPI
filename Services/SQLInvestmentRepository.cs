@@ -1,4 +1,5 @@
 ﻿using CryppitBackend.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,10 +53,12 @@ namespace CryppitBackend.Services
             return context.Investments.Where(investment => investment.UserId == userId);
         }
 
+    
         public Investment Update(Investment investmentChanges)
         {
+            context.Entry(GetInvestment(investmentChanges.Id)).State = EntityState.Detached;
             var investment = context.Investments.Attach(investmentChanges);
-            investment.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            investment.State = EntityState.Modified;
             context.SaveChanges();
             return investmentChanges;
         }
