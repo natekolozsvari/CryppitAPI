@@ -12,6 +12,6 @@ namespace CryppitBackend.Models
     public class Favorite : Crypto
     {
         [Required]
-        public int UserId { get; set; }
+        public string UserId { get; set; }
     }
 }

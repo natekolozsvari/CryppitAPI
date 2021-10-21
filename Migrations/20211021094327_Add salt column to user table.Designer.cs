@@ -4,14 +4,16 @@ using CryppitBackend.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CryppitBackend.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211021094327_Add salt column to user table")]
+    partial class Addsaltcolumntousertable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -171,17 +173,6 @@ namespace CryppitBackend.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "c784662e0c27497eb4337cb0b2109823",
-                            Balance = 1964.21,
-                            Email = "john@doe.com",
-                            JoinDate = "Wednesday, September 15, 2021",
-                            Name = "John Doe",
-                            Password = "johndoe"
-                        });
                 });
 
             modelBuilder.Entity("CryppitBackend.Models.DailyCrypto", b =>
