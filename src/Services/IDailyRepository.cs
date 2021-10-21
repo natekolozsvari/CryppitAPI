@@ -8,7 +8,7 @@ namespace CryppitBackend.Services
 {
     public interface IDailyRepository
     {
-        DailyCrypto GetDaily();
+        Task<DailyCrypto> GetDaily();
         DailyCrypto ChangeDaily(DailyCrypto newDaily);
     }
 }

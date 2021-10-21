@@ -12,17 +12,17 @@ namespace CryppitBackend.Controllers
     [Route("api/[controller]")]
     public class DailyCryptoController : Controller
     {
-        public IDailyRepository DailyRepository { get; set; }
+        public IDailyRepository DailyRepository{ get; set; }
 
-        public DailyCryptoController(IDailyRepository cryptoRepository)
+        public DailyCryptoController(IDailyRepository dailyRepository)
         {
-            DailyRepository = cryptoRepository;
+            DailyRepository = dailyRepository;
         }
 
         [HttpGet]
-        public DailyCrypto Get()
+        public async Task<DailyCrypto> Get()
         {
-            return DailyRepository.GetDaily();
+            return await DailyRepository.GetDaily();
         }
     }
 }

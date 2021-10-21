@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace CryppitBackend.Models
 {
-    [Keyless]
     public class DailyCrypto
     {
+        [Key]
         [Required]
         public string Id { get; set; }
 
