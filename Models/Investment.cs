@@ -15,15 +15,19 @@ using System.Text.Json.Serialization;
         public CryptoDetail Crypto { get; set; }
 
         [Required]
+        [JsonPropertyName("user_id")]
         public string UserId { get; set; }
 
         [Required]
+        [JsonPropertyName("crypto_id")]
         public string CryptoId { get; set; }
 
         [Required]
+        [JsonPropertyName("price")]
         public double PriceBought { get; set; }
 
-        [Required]
+        [NotMapped]
+        [JsonPropertyName("current_price")]
         public double CurrentPrice { get; set; }
 
         [Required]
