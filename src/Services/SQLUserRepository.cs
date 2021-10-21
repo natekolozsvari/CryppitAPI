@@ -16,9 +16,14 @@ namespace CryppitBackend.Services
             this._context = context;
         }
 
-        public User GetUser(int id)
+        public User GetUser(string id)
         {
             return _context.Users.Find(id);
+        }
+
+        public User GetUserByEmail(string email)
+        {
+            return _context.Users.FirstOrDefault(user => user.Email == email);
         }
 
         public IEnumerable<User> GetAllUsers()
@@ -41,7 +46,7 @@ namespace CryppitBackend.Services
             return userChanges;
         }
 
-        public User Delete(int id)
+        public User Delete(string id)
         {
             User user = _context.Users.Find(id);
             if (user != null)
