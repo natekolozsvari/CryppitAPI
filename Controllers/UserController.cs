@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -18,7 +19,6 @@ namespace CryppitBackend.Controllers
     public class UserController : ControllerBase
     {
         public IUserRepository SqlUserRepository { get; set; }
-        private string password;
 
         public UserController(IUserRepository userRepository)
         {
@@ -35,19 +35,17 @@ namespace CryppitBackend.Controllers
         [HttpPost("login")]
         public void GetPassword(User user)
         {
-            Trace.WriteLine("zzzz");
-            //Trace.WriteLine(password);
-            Trace.WriteLine(user);
-            Trace.WriteLine(user.Password);
-            //this.password = pw;
+
         }
 
 
         [HttpPost]
         public void AddUser(User user)
         {
+            var hashed = HashPassword(user.Password);
             user.Id = Guid.NewGuid().ToString("N");
-            user.Password = HashPassword(user.Password);
+            user.Salt = hashed.Item1;
+            user.Password = hashed.Item2;
             user.Balance = 100000;
             user.JoinDate = DateTime.Now.Date.ToString("D");
             SqlUserRepository.Add(user);
@@ -62,20 +60,20 @@ namespace CryppitBackend.Controllers
 
 
 
-        private string HashPassword(string password)
+        private Tuple<byte[], string> HashPassword(string password, byte[] salt = null)
         {
-            byte[] salt = new byte[128 / 8];
+            byte[] newSalt = salt ?? new byte[128 / 8];
             using (var rngCsp = new RNGCryptoServiceProvider())
             {
                 rngCsp.GetNonZeroBytes(salt);                
             }
             var hashedPassword = Convert.ToBase64String(KeyDerivation.Pbkdf2(
                 password: password,
-                salt: salt,
+                salt: newSalt,
                 prf: KeyDerivationPrf.HMACSHA256,
                 iterationCount: 100000,
                 numBytesRequested: 256 / 8));
-            return hashedPassword;
+            return Tuple.Create(newSalt, hashedPassword);
         }
 
     }
