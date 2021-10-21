@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CryppitBackend.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20211021133040_ChangeDaily")]
-    partial class ChangeDaily
+    [Migration("20211021140921_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,20 +21,11 @@ namespace CryppitBackend.Migrations
                 .HasAnnotation("ProductVersion", "5.0.11")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("CryppitBackend.Models.DailyCrypto", b =>
+            modelBuilder.Entity("CryppitBackend.Models.Crypto", b =>
                 {
-                    b.Property<long>("Changed")
-                        .HasColumnType("bigint");
+                    b.Property<string>("FavoriteId")
+                        .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("Id")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.ToTable("Daily");
-                });
-
-            modelBuilder.Entity("CryppitBackend.Models.Favorite", b =>
-                {
                     b.Property<double>("Ath")
                         .HasColumnType("float");
 
@@ -66,13 +57,27 @@ namespace CryppitBackend.Migrations
                         .HasColumnType("float");
 
                     b.Property<string>("UserId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<double>("Value")
                         .HasColumnType("float");
 
+                    b.HasKey("FavoriteId");
+
                     b.ToTable("Favorites");
+                });
+
+            modelBuilder.Entity("CryppitBackend.Models.DailyCrypto", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<long>("Changed")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Daily");
                 });
 
             modelBuilder.Entity("CryppitBackend.Models.Investment", b =>

@@ -1,37 +1,30 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CryppitBackend.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Crypto",
+                name: "Daily",
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Symbol = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Value = table.Column<double>(type: "float", nullable: false),
-                    Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Change = table.Column<double>(type: "float", nullable: false),
-                    MarketCap = table.Column<double>(type: "float", nullable: false),
-                    High24H = table.Column<double>(type: "float", nullable: false),
-                    Low24H = table.Column<double>(type: "float", nullable: false),
-                    Ath = table.Column<double>(type: "float", nullable: false),
-                    TotalVolume = table.Column<double>(type: "float", nullable: false)
+                    Changed = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Crypto", x => x.Id);
+                    table.PrimaryKey("PK_Daily", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Favorites",
                 columns: table => new
                 {
-                    UserId = table.Column<int>(type: "int", nullable: false),
+                    FavoriteId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Id = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Symbol = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -46,6 +39,7 @@ namespace CryppitBackend.Migrations
                 },
                 constraints: table =>
                 {
+                    table.PrimaryKey("PK_Favorites", x => x.FavoriteId);
                 });
 
             migrationBuilder.CreateTable(
@@ -56,7 +50,6 @@ namespace CryppitBackend.Migrations
                     UserId = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CryptoId = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PriceBought = table.Column<double>(type: "float", nullable: false),
-                    CurrentPrice = table.Column<double>(type: "float", nullable: false),
                     Amount = table.Column<double>(type: "float", nullable: false)
                 },
                 constraints: table =>
@@ -70,7 +63,8 @@ namespace CryppitBackend.Migrations
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    Salt = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Balance = table.Column<double>(type: "float", nullable: false),
                     JoinDate = table.Column<string>(type: "nvarchar(max)", nullable: true)
@@ -80,27 +74,10 @@ namespace CryppitBackend.Migrations
                     table.PrimaryKey("PK_Users", x => x.Id);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "Daily",
-                columns: table => new
-                {
-                    DetailsId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Changed = table.Column<long>(type: "bigint", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.ForeignKey(
-                        name: "FK_Daily_Crypto_DetailsId",
-                        column: x => x.DetailsId,
-                        principalTable: "Crypto",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Daily_DetailsId",
-                table: "Daily",
-                column: "DetailsId");
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "Id", "Balance", "Email", "JoinDate", "Name", "Password", "Salt" },
+                values: new object[] { "c784662e0c27497eb4337cb0b2109823", 1964.21, "john@doe.com", "Wednesday, September 15, 2021", "John Doe", "johndoe", null });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -116,9 +93,6 @@ namespace CryppitBackend.Migrations
 
             migrationBuilder.DropTable(
                 name: "Users");
-
-            migrationBuilder.DropTable(
-                name: "Crypto");
         }
     }
 }

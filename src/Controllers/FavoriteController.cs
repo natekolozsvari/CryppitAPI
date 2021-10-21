@@ -31,6 +31,28 @@ namespace CryppitBackend.Controllers
             FavoriteRepository.Add(favorite);
         }
 
+        [HttpPost("detail/{id}")]
+        public void PostFavoriteDetails(string id, CryptoDetail favorite)
+        {
+            var newFav = new Crypto
+            {
+                Id = favorite.Id,
+                Symbol = favorite.Symbol,
+                Name = favorite.Name,
+                Value = favorite.MarketData.CurrentPrice.Usd,
+                Image = favorite.Image.Small,
+                Change = favorite.MarketData.PriceChangePercentage24H,
+                MarketCap = favorite.MarketData.MarketCap.Usd,
+                High24H = favorite.MarketData.High24H.Usd,
+                Low24H = favorite.MarketData.Low24H.Usd,
+                Ath = favorite.MarketData.Ath.Usd,
+                TotalVolume = favorite.MarketData.TotalVolume.Usd
+            };
+            newFav.UserId = id;
+            newFav.FavoriteId = Guid.NewGuid().ToString("N");
+            FavoriteRepository.Add(newFav);
+        }
+
         [HttpDelete("{cryptoId}/{userId}")]
         public void DeleteFavorite(string cryptoId, string userId)
         {
