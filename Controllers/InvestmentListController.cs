@@ -38,21 +38,31 @@ namespace CryppitBackend.Controllers
         public Investment PostInvestment(string userId, Investment investment)
         {
             investment.UserId = userId;
-            investment.Id = Guid.NewGuid().ToString("N");
-            return InvestmentRepository.Add(investment);
+            var existingInv = InvestmentRepository.GetInvestmentsForUser(userId).Where(inv => inv.CryptoId == investment.CryptoId);
+            if (existingInv.Count() > 0)
+            {
+                investment.PriceBought += existingInv.First().PriceBought;
+                investment.Amount += existingInv.First().Amount;
+                return UpdateInvestment(existingInv.First().Id, investment);
+            }
+            else
+            {
+                investment.Id = Guid.NewGuid().ToString("N");
+                return InvestmentRepository.Add(investment);
+            }
         }
 
         [HttpPut("{id}")]
-        public void UpdateInvestment(string id, Investment investment)
+        public Investment UpdateInvestment(string id, Investment investment)
         {
             investment.Id = id;
-            InvestmentRepository.Update(investment);
+            return InvestmentRepository.Update(investment);
         }
 
         [HttpDelete("{id}")]
-        public void DeleteInvestment(string id)
+        public Investment DeleteInvestment(string id)
         {
-            InvestmentRepository.Delete(id);
+            return InvestmentRepository.Delete(id);
         }
 
 
