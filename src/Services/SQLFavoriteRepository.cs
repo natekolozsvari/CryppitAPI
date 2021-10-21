@@ -36,7 +36,7 @@ namespace CryppitBackend.Services
                 _context.Favorites.Remove(favorite);
                 _context.SaveChanges();
             }
-
+            
             return favorite;
         }
     }

@@ -25,7 +25,6 @@ namespace CryppitBackend.Services
             get { return Path.Combine(Environment.CurrentDirectory, "Data", "daily.json"); }
         }
 
-
         //public async Task<Crypto> GetDailyCrypto()
         //{
         //    DailyCrypto dailyCrypto;

@@ -1,16 +1,16 @@
 {
   "Details": {
-    "Id": "zero-collateral-dai",
-    "Symbol": "zai",
-    "Name": "Zero Collateral Dai",
-    "current_price": 0.00090979,
-    "Image": "https://assets.coingecko.com/coins/images/13569/large/zai_logo.png?1609844802",
-    "price_change_percentage_24h": 12.62353,
-    "market_cap": 73529894,
-    "high_24h": 0.0009136,
-    "low_24h": 0.00080782,
-    "Ath": 1.9,
-    "total_volume": 0
+    "Id": "phantasma",
+    "Symbol": "soul",
+    "Name": "Phantasma",
+    "current_price": 0.712426,
+    "Image": "https://assets.coingecko.com/coins/images/4130/large/phantasma.png?1548331035",
+    "price_change_percentage_24h": 4.43828,
+    "market_cap": 73111849,
+    "high_24h": 0.745889,
+    "low_24h": 0.670605,
+    "Ath": 0.934904,
+    "total_volume": 908870
   },
   "Changed": 18921
 }

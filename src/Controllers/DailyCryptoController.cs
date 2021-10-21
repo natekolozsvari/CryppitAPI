@@ -24,7 +24,5 @@ namespace CryppitBackend.Controllers
         {
             return DailyRepository.GetDaily();
         }
-
-
     }
 }
