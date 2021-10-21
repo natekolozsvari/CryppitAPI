@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
@@ -17,6 +18,7 @@ namespace CryppitBackend.Controllers
     public class UserController : ControllerBase
     {
         public IUserRepository SqlUserRepository { get; set; }
+        private string password;
 
         public UserController(IUserRepository userRepository)
         {
@@ -24,10 +26,20 @@ namespace CryppitBackend.Controllers
         }
 
 
-        [HttpGet("{email}")]
+        [HttpGet("email")]
         public User GetUserByEmail(string email)
         {
             return SqlUserRepository.GetUserByEmail(email);
+        }
+
+        [HttpPost("login")]
+        public void GetPassword(User user)
+        {
+            Trace.WriteLine("zzzz");
+            //Trace.WriteLine(password);
+            Trace.WriteLine(user);
+            Trace.WriteLine(user.Password);
+            //this.password = pw;
         }
 
 
@@ -35,6 +47,7 @@ namespace CryppitBackend.Controllers
         public void AddUser(User user)
         {
             user.Id = Guid.NewGuid().ToString("N");
+            user.Password = HashPassword(user.Password);
             user.Balance = 100000;
             user.JoinDate = DateTime.Now.Date.ToString("D");
             SqlUserRepository.Add(user);
