@@ -1,6 +1,7 @@
 ﻿using CryppitBackend.Models;
 using CryppitBackend.Services;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 
 namespace CryppitBackend.Controllers
@@ -9,34 +10,31 @@ namespace CryppitBackend.Controllers
     [Route("api/[controller]")]
     public class FavoriteController : Controller
     {
-        public FavoriteService FavoriteService { get; set; }
+        public IFavoriteRepository FavoriteRepository { get; set; }
 
-        public FavoriteController(FavoriteService favoriteService)
+        public FavoriteController(IFavoriteRepository favoriteRepository)
         {
-            FavoriteService = favoriteService;
+            FavoriteRepository = favoriteRepository;
         }
 
-        [HttpGet]
-        public IEnumerable<Crypto> GetFavorites()
+        [HttpGet("{id}")]
+        public IEnumerable<Crypto> GetFavorites(string id)
         {
-            return FavoriteService.GetFavorites();
+            return FavoriteRepository.GetAllFavorites(id);
         }
 
-        [HttpPost]
-        public void PostFavorite(Crypto favorite)
+        [HttpPost("{id}")]
+        public void PostFavorite(string id, Crypto favorite)
         {
-            FavoriteService.AddFavorite(favorite);
+            favorite.UserId = id;
+            favorite.FavoriteId = Guid.NewGuid().ToString("N");
+            FavoriteRepository.Add(favorite);
         }
 
-        [HttpDelete("{id}")]
-        public void DeleteFavorite(string id)
+        [HttpDelete("{cryptoId}/{userId}")]
+        public void DeleteFavorite(string cryptoId, string userId)
         {
-            FavoriteService.DeleteFavorite(id);
-        }
-
-        public IActionResult Index()
-        {
-            return View();
+            FavoriteRepository.Delete(cryptoId, userId);
         }
     }
 }

@@ -20,7 +20,7 @@ namespace CryppitBackend.Services
         }
 
         public IQueryable<Investment> Investments => context.Investments;
-
+        
         public Investment Add(Investment investment)
         {
             context.Investments.Add(investment);
@@ -53,7 +53,6 @@ namespace CryppitBackend.Services
         {
             return context.Investments.Where(investment => investment.UserId == userId);
         }
-
     
         public Investment Update(Investment investmentChanges)
         {

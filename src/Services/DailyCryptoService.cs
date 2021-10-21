@@ -25,31 +25,30 @@ namespace CryppitBackend.Services
             get { return Path.Combine(Environment.CurrentDirectory, "Data", "daily.json"); }
         }
 
+        //public async Task<Crypto> GetDailyCrypto()
+        //{
+        //    DailyCrypto dailyCrypto;
+        //    using (var jsonFileReader = File.OpenText(JsonFileName))
+        //    {
+        //        dailyCrypto = JsonSerializer.Deserialize<DailyCrypto>(jsonFileReader.ReadToEnd(),
+        //            new JsonSerializerOptions
+        //            {
+        //                PropertyNameCaseInsensitive = true
+        //            });
+        //    }
 
-        public async Task<Crypto> GetDailyCrypto()
-        {
-            DailyCrypto dailyCrypto;
-            using (var jsonFileReader = File.OpenText(JsonFileName))
-            {
-                dailyCrypto = JsonSerializer.Deserialize<DailyCrypto>(jsonFileReader.ReadToEnd(),
-                    new JsonSerializerOptions
-                    {
-                        PropertyNameCaseInsensitive = true
-                    });
-            }
-
-            Crypto details;
-            if (dailyCrypto.Changed == UnixToDay(DateTimeOffset.Now.ToUnixTimeSeconds()))
-            {
-                details = dailyCrypto.Details;
-            }
-            else
-            {
-                details = await SetNewDailyCrypto();
-                File.WriteAllText(JsonFileName, JsonSerializer.Serialize(new DailyCrypto { Details = details, Changed = UnixToDay(DateTimeOffset.Now.ToUnixTimeSeconds()) }, new JsonSerializerOptions { WriteIndented = true })); ;
-            }
-            return details;
-        }
+        //    Crypto details;
+        //    if (dailyCrypto.Changed == UnixToDay(DateTimeOffset.Now.ToUnixTimeSeconds()))
+        //    {
+        //        details = dailyCrypto.Details;
+        //    }
+        //    else
+        //    {
+        //        details = await SetNewDailyCrypto();
+        //        File.WriteAllText(JsonFileName, JsonSerializer.Serialize(new DailyCrypto { Details = details, Changed = UnixToDay(DateTimeOffset.Now.ToUnixTimeSeconds()) }, new JsonSerializerOptions { WriteIndented = true })); ;
+        //    }
+        //    return details;
+        //}
 
         public async Task<Crypto> SetNewDailyCrypto()
         {

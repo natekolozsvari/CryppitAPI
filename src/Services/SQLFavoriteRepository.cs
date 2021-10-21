@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using CryppitBackend.Models;
@@ -15,27 +16,27 @@ namespace CryppitBackend.Services
             _context = context;
         }
 
-        public IEnumerable<Favorite> GetAllFavorites(string userId)
+        public IEnumerable<Crypto> GetAllFavorites(string userId)
         {
             return _context.Favorites.Where(favorite =>favorite.UserId == userId);
         }
 
-        public Favorite Add(Favorite favorite)
+        public Crypto Add(Crypto favorite)
         {
             _context.Favorites.Add(favorite);
             _context.SaveChanges();
             return favorite;
         }
 
-        public Favorite Delete(int id)
+        public Crypto Delete(string cryptoId, string userId)
         {
-            Favorite favorite = _context.Favorites.Find(id);
+            Crypto favorite = _context.Favorites.FirstOrDefault(crypto => crypto.UserId == userId && crypto.Id == cryptoId);
             if (favorite != null)
             {
                 _context.Favorites.Remove(favorite);
                 _context.SaveChanges();
             }
-
+            
             return favorite;
         }
     }

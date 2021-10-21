@@ -31,10 +31,7 @@ namespace CryppitBackend
             services.AddTransient<CryptoDetailService>();
             services.AddTransient<DailyCryptoService>();
             services.AddTransient<UserService>();
-            //services.AddTransient<FavoriteService>();
             services.AddScoped<IFavoriteRepository, SQLFavoriteRepository>();
-            //services.AddTransient<UserService>();
-            services.AddTransient<FavoriteService>();
             services.AddScoped<IUserRepository, SQLUserRepository>();
             services.AddScoped<IInvestmentRepository, SQLInvestmentRepository>();
             services.AddScoped<IDailyRepository, SQLDailyRepository>();

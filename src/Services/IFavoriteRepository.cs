@@ -6,10 +6,10 @@ using CryppitBackend.Models;
 
 namespace CryppitBackend.Services
 {
-    interface IFavoriteRepository
+   public interface IFavoriteRepository
     {
-        IEnumerable<Favorite> GetAllFavorites(string userId);
-        Favorite Add(Favorite favorite);
-        Favorite Delete(int id);
+        IEnumerable<Crypto> GetAllFavorites(string userId);
+        Crypto Add(Crypto favorite);
+        Crypto Delete(string cryptoId, string userId);
     }
 }
