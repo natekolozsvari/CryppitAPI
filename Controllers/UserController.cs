@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
+using System.Text;
 using System.Threading.Tasks;
 using CryppitBackend.Models;
 using CryppitBackend.Services;
@@ -33,9 +34,14 @@ namespace CryppitBackend.Controllers
         }
 
         [HttpPost("login")]
-        public void GetPassword(User user)
+        public User CheckPassword(User user)
         {
-
+            var currentUser = GetUserByEmail(user.Email);
+            if (currentUser.Password.Equals(HashPassword(user.Password, currentUser.Salt).Item2))
+            {
+                return currentUser;
+            }
+            return null;
         }
 
 
@@ -59,22 +65,30 @@ namespace CryppitBackend.Controllers
         }
 
 
-
         private Tuple<byte[], string> HashPassword(string password, byte[] salt = null)
         {
-            byte[] newSalt = salt ?? new byte[128 / 8];
-            using (var rngCsp = new RNGCryptoServiceProvider())
+            byte[] newSalt;
+            if (salt == null)
             {
-                rngCsp.GetNonZeroBytes(salt);                
+                newSalt = new byte[128 / 8];
+                using (var rngCsp = new RNGCryptoServiceProvider())
+                {
+                    rngCsp.GetNonZeroBytes(newSalt);                
+                }
             }
+            else
+            {
+                newSalt = salt;
+            }
+
             var hashedPassword = Convert.ToBase64String(KeyDerivation.Pbkdf2(
                 password: password,
                 salt: newSalt,
                 prf: KeyDerivationPrf.HMACSHA256,
                 iterationCount: 100000,
                 numBytesRequested: 256 / 8));
+            Trace.WriteLine(hashedPassword);
             return Tuple.Create(newSalt, hashedPassword);
         }
-
     }
 }
